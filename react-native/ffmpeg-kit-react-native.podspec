@@ -119,10 +119,27 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'full-gpl' do |ss|
-      ss.source_files      = '**/FFmpegKitReactNativeModule.m',
-                             '**/FFmpegKitReactNativeModule.h'
-      ss.dependency 'ffmpeg-kit-ios-full-gpl', "6.0"
-      ss.ios.deployment_target = '12.1'
+    ss.source_files      = '**/FFmpegKitReactNativeModule.m',
+                           '**/FFmpegKitReactNativeModule.h'
+
+    s.prepare_command = <<-CMD
+      curl -L -o ffmpegkit-frameworks.zip https://github.com/pchalupa/ffmpeg-kit/releases/download/react.native.v6.0.2/ffmpeg-kit-full-gpl-6.0-ios-xcframework.zip
+      unzip -o ffmpegkit-frameworks.zip -d ios/frameworks
+    CMD
+
+    ss.ios.frameworks   = ['AudioToolbox', 'AVFoundation', 'CoreMedia', 'VideoToolbox']
+    ss.libraries        = ['z', 'bz2', 'c++', 'iconv']
+    ss.vendored_frameworks = [
+      'ios/frameworks/ffmpegkit.xcframework',
+      'ios/frameworks/libavcodec.xcframework',
+      'ios/frameworks/libavdevice.xcframework',
+      'ios/frameworks/libavfilter.xcframework',
+      'ios/frameworks/libavformat.xcframework',
+      'ios/frameworks/libavutil.xcframework',
+      'ios/frameworks/libswresample.xcframework',
+      'ios/frameworks/libswscale.xcframework'
+    ]
+    ss.ios.deployment_target = '12.1'
   end
 
   s.subspec 'full-gpl-lts' do |ss|
