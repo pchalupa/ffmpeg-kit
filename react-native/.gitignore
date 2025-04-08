@@ -60,4 +60,4 @@ android/keystores/debug.keystore
 lib/
 
 # ios
-ios/frameworks
+frameworks

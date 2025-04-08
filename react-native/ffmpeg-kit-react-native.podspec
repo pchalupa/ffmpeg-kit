@@ -124,20 +124,20 @@ Pod::Spec.new do |s|
 
     s.prepare_command = <<-CMD
       curl -L -o ffmpegkit-frameworks.zip https://github.com/pchalupa/ffmpeg-kit/releases/download/react.native.v6.0.2/ffmpeg-kit-full-gpl-6.0-ios-xcframework.zip
-      unzip -o ffmpegkit-frameworks.zip -d ios/frameworks
+      unzip -o ffmpegkit-frameworks.zip -d frameworks
     CMD
 
     ss.ios.frameworks   = ['AudioToolbox', 'AVFoundation', 'CoreMedia', 'VideoToolbox']
     ss.libraries        = ['z', 'bz2', 'c++', 'iconv']
     ss.vendored_frameworks = [
-      'ios/frameworks/ffmpegkit.xcframework',
-      'ios/frameworks/libavcodec.xcframework',
-      'ios/frameworks/libavdevice.xcframework',
-      'ios/frameworks/libavfilter.xcframework',
-      'ios/frameworks/libavformat.xcframework',
-      'ios/frameworks/libavutil.xcframework',
-      'ios/frameworks/libswresample.xcframework',
-      'ios/frameworks/libswscale.xcframework'
+      'frameworks/ffmpegkit.xcframework',
+      'frameworks/libavcodec.xcframework',
+      'frameworks/libavdevice.xcframework',
+      'frameworks/libavfilter.xcframework',
+      'frameworks/libavformat.xcframework',
+      'frameworks/libavutil.xcframework',
+      'frameworks/libswresample.xcframework',
+      'frameworks/libswscale.xcframework'
     ]
     ss.ios.deployment_target = '12.1'
   end
